@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <script type="text/javascript"  src="{{url_for('static', filename='home.js')}}"></script>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+    
+    <h1> IPL Data </h1>
+    <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">                
+                <div class="caption">
+                  <h3>Top 4 teams in terms of wins</h3>
+                  <ul >
+                        {% for team in data['topteam'] %}
+                        <li>{{team}}</li>
+                        {% endfor %}
+                  </ul>                  
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">                
+                      <div class="caption">
+                        <h3>Team won the most number of tosses in the season</h3>
+                        <select class="form-control" id="seasonToss" onchange="teamToWinMostTossInSeason()">
+                                {% for season in data['season'] %}
+                                <option value="{{season}}">{{season}}</option>
+                                {% endfor %}                                
+                              </select>
+                        <p id='teamToWinMostTossInSeason'>                          
+                        </p>                
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">                
+                      <div class="caption">
+                        <h3>Which player won the maximum number of Player of the Match awards in the whole season?</h3>
+                        <p>{{data['PlayerToWinMaxManOfMatchInSeason'].index[0]}}                           
+                        </p>                
+                        </div>
+                    </div>
+            </div>
+          </div>
+
+
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">                
+              <div class="caption">
+                <h3>Team Win% Loss% in the season in a City</h3>
+                <select class="form-control" id="winlossseason" onchange="winlossstasts()">
+                        {% for season in data['season'] %}
+                        <option value="{{season}}">{{season}}</option>
+                        {% endfor %}
+                        
+                      </select>
+                <p id='winlossdatas'>                          
+                </p>                
+                </div>
+            </div>
+    </div>
+    
+    {% endblock %}
+   
+
+  </body>
+</html>

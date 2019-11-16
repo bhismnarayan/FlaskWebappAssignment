@@ -1,0 +1,36 @@
+Exercise
+
+IPL Season Stats  
+Load the provided csv which contains the stats from a few years of IPL Cricket matches into a database - Click to Download. 
+
+Create a Web Application using Python and any libraries or web framework you are comfortable with to provide the following reporting functionality with the data from the database:
+
+Season Stats
+Choose season (years) and get these stats:
+•	Top 4 teams in terms of wins
+•	Which team won the most number of tosses in the season
+•	Which player won the maximum number of Player of the Match awards in the whole season
+•	Which team won max matches in the whole season
+•	Which location has the most number of wins for the top team
+•	Which % of teams decided to bat when they won the toss
+•	Which location hosted most number of matches and win % and loss % for the season
+•	Which team won by the highest margin of runs  for the season
+
+If you finished the above and want to impress us, try one or two of these as well:
+•	Which team won by the highest number of wickets for the season
+•	How many times has a team won the toss and the match
+•	Which Batsman gave away the most number of runs in a match for the selected season
+•	Most number of catches by a fielder in a match for the selected season.
+
+Plus points for :
+•	Dockerized project 
+•	Deploy on heroku or any such platform to Demo the application you’ve built
+•	Amaze us with the use of  graphs to depict data
+
+Please make sure you have the following before submission:
+•	Create a GitHub project and push your code there. Send us the URL to your project
+•	Please include your python lib requirements as requirements.txt in Git
+•	Please include a readme.txt with instructions to run your code ( if you don’t have a working demo url)
+	
+
+
