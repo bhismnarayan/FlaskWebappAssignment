@@ -4,7 +4,8 @@ matchdata = pd.read_csv(r"matches.csv")
 deliveriesdata = pd.read_csv(r"deliveries.csv")
 
 def getUniqueSeason():
-    return matchdata.season.unique()
+    return matchdata.season.sort_values().unique()
+
 
 
 #Top 4 teams in terms of wins
@@ -15,32 +16,29 @@ def top4TeamInWinnner():
 #Which team won the most number of tosses in the season
 def TeamToWinMostTossInSeason(season):
     resultdata=list(matchdata[matchdata['season']==season].groupby('toss_winner').size().sort_values(ascending=False).head(1).index)
-    return resultdata
+    return resultdata[0]
 
 #Which player won the maximum number of Player of the Match awards in the whole season
 def PlayerToWinMaxManOfMatchInSeason(season):
     resultdata=list(matchdata.loc[(matchdata['season'] == season)].groupby('player_of_match').size().sort_values(ascending=False).head(1).index)
-    print(resultdata)
-    return resultdata
+    return resultdata[0]
 
 
 #Which team won max matches in the whole season
 def TeamToWinMaxMaxinSeason(season):
-    resultdata=matchdata.loc[(matchdata['season'] == season)].groupby('winner').size().sort_values(ascending=False).head(1)
-    return resultdata
+    resultdata=list(matchdata.loc[(matchdata['season'] == season)].groupby('winner').size().sort_values(ascending=False).head(1).index)
+    return resultdata[0]
 
 #   Which location has the most number of wins for the top team
 def LocationWithMostWinsForTopTeam():
     topteamdata=top4TeamInWinnner()
-    resultdata=matchdata.loc[(matchdata['winner'] ==topteamdata) ].groupby('city').size().sort_values(ascending=False).head(1)
-    print(resultdata)
-    return resultdata
+    resultdata=list(matchdata.loc[(matchdata['winner'] ==topteamdata[0]) ].groupby('city').size().sort_values(ascending=False).head(1).index)
+    return resultdata[0]
 
 #	Which % of teams decided to bat when they won the toss
 def PercentageOfTeamDecidedToBatWhenWonTheToss():
     resultdata=matchdata.loc[(matchdata['toss_decision'] =='bat') ].groupby('toss_decision').size().sort_values(ascending=False).head()[0]/matchdata.shape[0]
-    print(resultdata)
-    return resultdata
+    return round(resultdata*100,2)
 
 #	Which location hosted most number of matches and win % and loss % for the season
 def LocationHostedMostNumberOfMatchesAndWinLossPercentage(season):
@@ -67,9 +65,9 @@ def LocationHostedMostNumberOfMatchesAndWinLossPercentage(season):
 
 #	Which team won by the highest margin of runs  for the season
 def HighestMarginWinForaseason(season):
-    resultdata=matchdata.loc[(matchdata['win_by_runs'] > 0) & (matchdata['season'] == 2008)].sort_values(ascending=False,by='win_by_runs').head(1).winner
-    print(resultdata)
-    return resultdata
+    resultdata=matchdata.loc[(matchdata['win_by_runs'] > 0) & (matchdata['season'] == season)].sort_values(ascending=False,by='win_by_runs').head(1).winner
+    
+    return resultdata.iat[0]
 
     
 #Which team won by the highest number of wickets for the season
@@ -100,4 +98,4 @@ def MostNumberOfCatchesByFielderinMatchForTheSelectedSeason(season):
     return resultdata
 
  
-#LocationHostedMostNumberOfMatchesAndWinLossPercentage(2013)
+PercentageOfTeamDecidedToBatWhenWonTheToss()
