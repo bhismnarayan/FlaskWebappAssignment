@@ -56,25 +56,20 @@ def LocationHostedMostNumberOfMatchesAndWinLossPercentage(season):
     winlossdata['Loss_Percentage']=100-winlossdata['Win_Percentage']
     winlossdata['city']=cityname
     resultdata=(winlossdata[['Win_Percentage','Loss_Percentage','city']])
-    print(resultdata)
-    return resultdata
-
-
-
+    
+    return resultdata.to_html()
 
 
 #	Which team won by the highest margin of runs  for the season
 def HighestMarginWinForaseason(season):
     resultdata=matchdata.loc[(matchdata['win_by_runs'] > 0) & (matchdata['season'] == season)].sort_values(ascending=False,by='win_by_runs').head(1).winner
-    
     return resultdata.iat[0]
 
     
 #Which team won by the highest number of wickets for the season
 def HighestNumberofWicketWinForaseason(season):
     resultdata=matchdata.loc[(matchdata['win_by_wickets'] > 0) & (matchdata['season'] == season)].sort_values(ascending=False,by='win_by_wickets').head(1).winner
-    print(resultdata)
-    return resultdata
+    return resultdata.iat[0]
 
 #	How many times has a team won the toss and the match
 def NumberOfTImeTeamWonTheTossAndTheMatch():
@@ -87,15 +82,13 @@ def BatsmanGaveAwayMostNumberOfRunsInAMachInASeason(season):
     matchid=matchdata.loc[(matchdata['season'] ==season)].id
     subdata=deliveriesdata.loc[(deliveriesdata['batsman_runs'] >0)]
     resultdata=subdata[subdata['match_id'].isin(matchid)].groupby(['batsman','match_id']).size().sort_values(ascending=False).head(1)
-    print(resultdata)
-    return resultdata
+    return resultdata.index[0][0]
 #	Most number of catches by a fielder in a match for the selected season.
 def MostNumberOfCatchesByFielderinMatchForTheSelectedSeason(season):
     matchid=matchdata.loc[(matchdata['season'] ==season)].id
     catchdata1=deliveriesdata.loc[(deliveriesdata['dismissal_kind'] =='caught')]
     resultdata=catchdata1[catchdata1['match_id'].isin(matchid)].groupby(['match_id','fielder']).size().sort_values(ascending=False).head(1)
-    print(resultdata)
-    return resultdata
+    return resultdata[0]
 
  
-PercentageOfTeamDecidedToBatWhenWonTheToss()
+LocationHostedMostNumberOfMatchesAndWinLossPercentage(2009)
