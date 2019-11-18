@@ -11,6 +11,7 @@
     
     <h1> IPL Data </h1>
     <div class="row">
+      <!--#Top 4 teams in terms of wins-->
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail">                
                 <div class="caption">
@@ -23,7 +24,7 @@
                   </div>
               </div>
             </div>
-
+            <!--#Which team won the most number of tosses in the season -->
             <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">                
                       <div class="caption">
@@ -38,7 +39,8 @@
                         </div>
                     </div>
             </div>
-
+            <!--
+            #Which player won the maximum number of Player of the Match awards in the whole season-->
             <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">                
                       <div class="caption">
@@ -48,9 +50,18 @@
                         </div>
                     </div>
             </div>
-          </div>
+          
 
-
+<!-- #Which team won max matches in the whole season-->
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">                
+      <div class="caption">
+        <h3>Which team won max matches in the whole season?</h3>
+        <p>{{data['PlayerToWinMaxManOfMatchInSeason'].index[0]}}                           
+        </p>                
+        </div>
+    </div>
+</div>
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">                
               <div class="caption">
@@ -65,6 +76,8 @@
                 </p>                
                 </div>
             </div>
+          
+          </div>
     </div>
     
     {% endblock %}
